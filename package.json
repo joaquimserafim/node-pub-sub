@@ -1,0 +1,29 @@
+{
+  "name": "tu-pubSub",
+  "version": "0.0.0-1",
+  "description": "Implement the Publish/Subscribe messaging paradigm where (citing Wikipedia) senders (publishers) are not programmed to send their messages to specific receivers (subscribers). Rather, published messages are characterized into channels, without knowledge of what (if any) subscribers there may be. Subscribers express interest in one or more channels, and only receive messages that are of interest, without knowledge of what (if any) publishers there are. This decoupling of publishers and subscribers can allow for greater scalability and a more dynamic network topology.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaquimserafim/tu-pubSub.git"
+  },
+  "keywords": [
+    "publisher",
+    "subscriber"
+  ],
+  "author": "@joaquimserafim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joaquimserafim/tu-pubSub/issues"
+  },
+  "homepage": "https://github.com/joaquimserafim/tu-pubSub",
+  "devDependencies": {
+    "tape": "~2.3.2"
+  }
+}
