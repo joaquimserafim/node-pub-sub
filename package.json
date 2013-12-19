@@ -25,5 +25,9 @@
   "homepage": "https://github.com/joaquimserafim/tu-pubSub",
   "devDependencies": {
     "tape": "~2.3.2"
+  },
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "guid": "0.0.11"
   }
 }
