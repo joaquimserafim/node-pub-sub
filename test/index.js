@@ -1,38 +1,43 @@
 var test = require('tape');
-var Guid = require('guid');
 var _ = require('underscore');
 
-var Publisher = require('../').Publisher;
+var Publish = require('../').Publish;
+var Subscribe = require('../').Subscribe;
 
-var pub = new Publisher();
+var num_t = 201;
+
+test('pub-sub', function (t) {
+  t.plan(num_t);
+
+  var pub = new Publish(5000, {timeout: 60000, encoding: 'ascii'});
+  var sub = new Subscribe('localhost', 5000, {timeout: 60000, encoding: 'ascii'})
+  
+  pub.on('ready', function () { t.pass('publish, ready'); });
+  pub.on('error', function (err) { t.error(err !== null, err); });
+  pub.on('close', function () { t.pass('publish, close'); });
 
 
-test('client subscribing a channel don\'t exists', function (t) {
-  t.plan(1);
+  var channel = 'xpto';
 
-  pub.start(function (err) {
-    t.equal(err !== null, true, err);
+  // create some messages
+  var messages = _.times(100, function (n) { return 'Hello World ' + new Date().getTime() + n; })
+
+
+  // subscribing
+  var rx = 0;
+  sub.start(channel, function (err, data) {
+    if (err) return t.ok(err, err);
+
+    t.ok(data, 'rx ' + (++rx) + ' - ' + data);
   });
-});
 
-
-
-/*
-
- // when server start to listener launch this method
-    // check you don't need this method to start publish messages
-    // it's used only if you want to confirm server is online
-    // create messages to publish
-    _.map(['test0'], function (channel) {
-      var n = _.random(100, 200);
-
-      t.plan(n + 1);
-      for (var i = 0; i < n; i++) {
-        var message = Guid.raw();
-        var res = pub.publish(channel, message);
-        t.equal(res, true, 'publish in channel ' + channel + ' a new message ' + message);
-      }
+  // publishing
+  setTimeout(function () {
+    var tx = 0;
+    _.each(messages, function  (msg) {
+      pub.publish(channel, msg, function () {
+        t.pass('tx ' + (++tx) + ' - ' + msg);
+      });
     });
-
-
-*/
+  }, 2000);
+});

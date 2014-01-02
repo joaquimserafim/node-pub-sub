@@ -1,5 +1,5 @@
 {
-  "name": "tu-pubSub",
+  "name": "node-pub-sub",
   "version": "0.0.0-1",
   "description": "Implement the Publish/Subscribe messaging paradigm where (citing Wikipedia) senders (publishers) are not programmed to send their messages to specific receivers (subscribers). Rather, published messages are characterized into channels, without knowledge of what (if any) subscribers there may be. Subscribers express interest in one or more channels, and only receive messages that are of interest, without knowledge of what (if any) publishers there are. This decoupling of publishers and subscribers can allow for greater scalability and a more dynamic network topology.",
   "main": "index.js",
@@ -7,11 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/joaquimserafim/tu-pubSub.git"
+    "url": "https://github.com/joaquimserafim/node-pub-sub.git"
   },
   "keywords": [
     "publisher",
@@ -20,14 +20,14 @@
   "author": "@joaquimserafim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joaquimserafim/tu-pubSub/issues"
+    "url": "https://github.com/joaquimserafim/node-pub-sub/issues"
   },
-  "homepage": "https://github.com/joaquimserafim/tu-pubSub",
+  "homepage": "https://github.com/joaquimserafim/node-pub-sub",
   "devDependencies": {
     "tape": "~2.3.2"
   },
   "dependencies": {
     "underscore": "~1.5.2",
-    "guid": "0.0.11"
+    "node-netcat": "~1.0.5"
   }
 }
