@@ -1,6 +1,9 @@
 # node-pub-sub
 
-Implements Publish/Subscribe messaging paradigm.
+<a href="https://nodei.co/npm/node-pub-sub/"><img src="https://nodei.co/npm/node-pub-sub.png"></a>
+
+
+Implements Publish/Subscribe messaging paradigm in a very simple way.
 
 
 
@@ -14,27 +17,98 @@ Most messaging systems support both the pub/sub and message queue models in thei
 
 
 
+### Description
+
+All communication/messages it's done in JSON.
+
+#### Publish
+    
+      require('node-pub-sub').Publish
+      
+      Publish([port], [options])
+      
+      port: default to 5000
+      options: {timeout: 120000, encoding: 'ascii'}
+          timeout: put a timeout like 1 hour or 6 hours because if spend much 
+              time without publish messages the server will close the 
+              connection, default to 3600000
+          encoding: default to ascii, utf8
+          
+      
+      events:
+          ('ready', callback)
+          ('error', callback (err))
+          ('close', callback)
+    
+
+    // publish messages
+    pub.publish('some channel', 'some message', [callback])
+
+#### Subscribe
+
+    require('node-pub-sub').Publish
+    
+    Publish('localhost', 5000, {timeout: 120000, encoding: 'ascii'})
+    
+      host: default to localhost
+      port: default to 5000
+      options: {timeout: 120000, encoding: 'ascii'}
+          timeout: put a timeout like 1 hour or 6 hours because if spend much
+              time without publish messages the server will close the connection,
+              default to 3600000
+          encoding: default to ascii, utf8
+          
+    
+    // subscribe to a channel      
+    sub.start('some channel', callback ('error/warn message', 'json object'))
 
 
+### Usage
 
-### The MIT License (MIT)
+    **Publish**
+    
+    var Publish = require('node-pub-sub').Publish;
+    
+    var pub = new Publish(5000, {timeout: 120000, encoding: 'ascii'});
+    
+    pub.on('ready', function () { console.log('publish ready'); });
+    pub.on('error', function (err) { console.log(err); });
+    pub.on('close', function () { console.log('publish close'); });
+    
 
-**Copyright (c) 2013 [Joaquim Serafim](http://joaquimserafim.pt)**
+    
+    pub.publish('some channel', 'some message', function () {
+        // some acknowledgement
+    });
+    
+    
+    // close Publish - pub.close();
+    
+    
+    
+    
+    **Subscribe**
+    
+    var Subscribe = require('node-pub-sub').Subscribe;
+    
+    var sub = new Subscribe('localhost', 5000, {
+        timeout: 120000, encoding: 'ascii'
+    });
+    
+    sub.start(channel, function (err, message) {
+        // {message: "client unsubscribe.", type: "warn"}
+        // {message: "some exception", type: "error"}
+        if (err) throw err;
+        
+        // JSON object 
+        console.log(message);
+    });
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+    // unsubscribe when you want
+    setTimeout(function () {
+        sub.close();
+    }, 60000);
+    
+    
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.

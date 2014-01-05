@@ -1,7 +1,7 @@
 {
   "name": "node-pub-sub",
-  "version": "0.0.0-1",
-  "description": "Implement the Publish/Subscribe messaging paradigm where (citing Wikipedia) senders (publishers) are not programmed to send their messages to specific receivers (subscribers). Rather, published messages are characterized into channels, without knowledge of what (if any) subscribers there may be. Subscribers express interest in one or more channels, and only receive messages that are of interest, without knowledge of what (if any) publishers there are. This decoupling of publishers and subscribers can allow for greater scalability and a more dynamic network topology.",
+  "version": "1.0.0",
+  "description": "Implements Publish/Subscribe messaging paradigm in a very simple way.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -18,16 +18,19 @@
     "subscriber"
   ],
   "author": "@joaquimserafim",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/joaquimserafim/node-pub-sub/issues"
   },
   "homepage": "https://github.com/joaquimserafim/node-pub-sub",
   "devDependencies": {
-    "tape": "~2.3.2"
+    "tape": "~2.3.2",
+    "guid": "0.0.12"
   },
   "dependencies": {
     "underscore": "~1.5.2",
-    "node-netcat": "~1.0.5"
+    "node-netcat": "~1.1.5",
+    "through": "~2.3.4",
+    "split-json": "~1.0.0"
   }
 }

@@ -1,16 +1,21 @@
 var test = require('tape');
 var _ = require('underscore');
+var Guid = require('guid');
 
-var Publish = require('../').Publish;
-var Subscribe = require('../').Subscribe;
+var JSONhandler = require('../lib/utils').JSONhandler;
 
-var num_t = 201;
+var PubSub = require('../');
+
+var Publish = PubSub.Publish;
+var Subscribe = PubSub.Subscribe;
+
+var num_t = 2003;
 
 test('pub-sub', function (t) {
   t.plan(num_t);
 
-  var pub = new Publish(5000, {timeout: 60000, encoding: 'ascii'});
-  var sub = new Subscribe('localhost', 5000, {timeout: 60000, encoding: 'ascii'})
+  var pub = new Publish(5000, {timeout:120000, encoding: 'ascii'});
+  var sub = new Subscribe('localhost', 5000, {timeout: 120000, encoding: 'ascii'})
   
   pub.on('ready', function () { t.pass('publish, ready'); });
   pub.on('error', function (err) { t.error(err !== null, err); });
@@ -20,23 +25,27 @@ test('pub-sub', function (t) {
   var channel = 'xpto';
 
   // create some messages
-  var messages = _.times(100, function (n) { return 'Hello World ' + new Date().getTime() + n; })
+  var messages = _.times(1000, function (n) { return 'Hello World ' + Guid.raw(); })
 
+  var control_exit = 0;
 
   // subscribing
-  var rx = 0;
-  sub.start(channel, function (err, data) {
+  sub.start(channel, function (err, obj) {
     if (err) return t.ok(err, err);
+    t.ok(_.isObject(obj), JSONhandler.stringify(obj));
 
-    t.ok(data, 'rx ' + (++rx) + ' - ' + data);
+    if (++control_exit === 1000) {
+      sub.close();
+      setTimeout(function () { pub.close(); }, 500);
+    }
   });
+
 
   // publishing
   setTimeout(function () {
-    var tx = 0;
     _.each(messages, function  (msg) {
       pub.publish(channel, msg, function () {
-        t.pass('tx ' + (++tx) + ' - ' + msg);
+        t.ok(msg, msg);
       });
     });
   }, 2000);
