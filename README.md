@@ -2,6 +2,8 @@
 
 <a href="https://nodei.co/npm/node-pub-sub/"><img src="https://nodei.co/npm/node-pub-sub.png"></a>
 
+[![Build Status](https://travis-ci.org/joaquimserafim/node-pub-sub.png?branch=master)](https://travis-ci.org/joaquimserafim/node-pub-sub)
+
 
 Implements Publish/Subscribe messaging paradigm in a very simple way.
 
