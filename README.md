@@ -38,11 +38,14 @@ All communication/messages it's done in JSON.
       events:
           ('ready', callback)
           ('error', callback (err))
-          ('close', callback)
+          ('end', callback)
     
 
     // publish messages
     pub.publish('some channel', 'some message', [callback])
+    
+    // end
+    pub.end()
 
 #### Subscribe
 
@@ -60,7 +63,10 @@ All communication/messages it's done in JSON.
           
     
     // subscribe to a channel      
-    sub.start('some channel', callback ('error/warn message', 'json object'))
+    sub.start('some channel', callback ('error/warn message', 'message - json object'))
+    
+    // unsubscribe, for now unsubscribe to all channels
+    sub.end()
 
 
 ### Usage
@@ -73,17 +79,16 @@ All communication/messages it's done in JSON.
     
     pub.on('ready', function () { console.log('publish ready'); });
     pub.on('error', function (err) { console.log(err); });
-    pub.on('close', function () { console.log('publish close'); });
+    pub.on('end', function () { console.log('publish ended'); });
     
 
-    
     pub.publish('some channel', 'some message', function () {
         // some acknowledgement
     });
     
     
-    // close Publish - pub.close();
-    
+    // close Publish - 
+    pub.end();
     
     
     
@@ -106,7 +111,7 @@ All communication/messages it's done in JSON.
 
     // unsubscribe when you want
     setTimeout(function () {
-        sub.close();
+        sub.end();
     }, 60000);
     
     

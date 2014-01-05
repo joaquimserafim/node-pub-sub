@@ -19,7 +19,7 @@ test('pub-sub', function (t) {
   
   pub.on('ready', function () { t.pass('publish, ready'); });
   pub.on('error', function (err) { t.error(err !== null, err); });
-  pub.on('close', function () { t.pass('publish, close'); });
+  pub.on('end', function () { t.pass('publish, ended'); });
 
 
   var channel = 'xpto';
@@ -35,8 +35,8 @@ test('pub-sub', function (t) {
     t.ok(_.isObject(obj), JSONhandler.stringify(obj));
 
     if (++control_exit === 1000) {
-      sub.close();
-      setTimeout(function () { pub.close(); }, 500);
+      sub.end();
+      setTimeout(function () { pub.end(); }, 500);
     }
   });
 
