@@ -86,8 +86,7 @@ All communication/messages it's done in JSON.
         // some acknowledgement
     });
     
-    
-    // close Publish - 
+    // close Publish    
     pub.end();
     
     
