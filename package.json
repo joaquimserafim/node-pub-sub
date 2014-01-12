@@ -1,6 +1,6 @@
 {
   "name": "node-pub-sub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Implements Publish/Subscribe messaging paradigm in a very simple way.",
   "main": "index.js",
   "directories": {
@@ -30,8 +30,6 @@
   "dependencies": {
     "underscore": "~1.5.2",
     "node-netcat": "~1.1.5",
-    "through": "~2.3.4",
-    "split-json": "~1.0.0",
-    "readable-stream": "~1.1.9"
+    "split-json": "~1.2.1"
   }
 }
