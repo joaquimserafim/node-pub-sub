@@ -14,8 +14,8 @@ var num_t = 2003;
 test('pub-sub', function (t) {
   t.plan(num_t);
 
-  var pub = new Publish(5000, '127.0.0.1', {timeout:120000, encoding: 'ascii'});
-  var sub = new Subscribe(5000, '127.0.0.1', {timeout: 120000, encoding: 'ascii'})
+  var pub = new Publish(7777, '127.0.0.1', {timeout:120000, encoding: 'ascii'});
+  var sub = new Subscribe(7777, '127.0.0.1', {timeout: 120000, encoding: 'ascii'})
   
   pub.on('ready', function () { t.pass('publish, ready'); });
   pub.on('error', function (err) { t.error(err !== null, err); });
