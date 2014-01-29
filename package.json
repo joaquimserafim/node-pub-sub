@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/joaquimserafim/node-pub-sub",
   "devDependencies": {
-    "tape": "~2.3.2",
-    "guid": "0.0.12"
+    "guid": "0.0.12",
+    "tape": "~2.4.0"
   },
   "dependencies": {
     "underscore": "~1.5.2",
