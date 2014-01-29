@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/joaquimserafim/node-pub-sub.png?branch=master)](https://travis-ci.org/joaquimserafim/node-pub-sub)
 
+<img src="https://david-dm.org/joaquimserafim/node-pub-sub.png">
+
 
 Implements Publish/Subscribe messaging paradigm in a very simple way.
 

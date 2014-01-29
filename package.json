@@ -25,11 +25,13 @@
   "homepage": "https://github.com/joaquimserafim/node-pub-sub",
   "devDependencies": {
     "tape": "~2.3.2",
-    "guid": "0.0.12"
+    "guid": "0.0.12",
+    "node-netcat": "~1.1.5",
+    "split-json": "~1.2.2"
   },
   "dependencies": {
     "underscore": "~1.5.2",
     "node-netcat": "~1.1.5",
-    "split-json": "~1.2.1"
+    "split-json": "~1.2.2"
   }
 }
