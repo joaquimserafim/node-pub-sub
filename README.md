@@ -21,7 +21,7 @@ Most messaging systems support both the pub/sub and message queue models in thei
 
 
 
-### Info
+### API
 
 All communication/messages it's done in JSON.
 
@@ -29,9 +29,10 @@ All communication/messages it's done in JSON.
     
     require('node-pub-sub').Publish
       
-    Publish([port], [options])
+    Publish([port], [host], [options])
       
      port: default to 5000
+     host: default to localhost
      options: {timeout: 120000, encoding: 'ascii'}
           timeout: put a timeout like 1 hour or 6 hours because if spend much 
               time without publish messages the server will close the 
@@ -73,7 +74,7 @@ All communication/messages it's done in JSON.
     sub.end()
 
 
-### Usage
+### Examples
 
     **Publish**
     
