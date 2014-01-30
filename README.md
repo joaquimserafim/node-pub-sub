@@ -56,7 +56,7 @@ All communication/messages it's done in JSON.
 
     require('node-pub-sub').Publish
     
-    Publish('localhost', 5000, {timeout: 120000, encoding: 'ascii'})
+    Publish(port, [host], [options])
     
       host: default to localhost
       port: default to 5000
@@ -100,7 +100,7 @@ All communication/messages it's done in JSON.
     
     var Subscribe = require('node-pub-sub').Subscribe;
     
-    var sub = new Subscribe('localhost', 5000, {
+    var sub = new Subscribe(5000, {
         timeout: 120000, encoding: 'ascii'
     });
     
