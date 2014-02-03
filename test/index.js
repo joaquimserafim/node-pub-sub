@@ -1,5 +1,4 @@
 var test = require('tape');
-var _ = require('underscore');
 var Guid = require('guid');
 
 var JSONhandler = require('../lib/utils').JSONhandler;
@@ -25,16 +24,19 @@ test('pub-sub', function (t) {
   var channel = 'xpto';
 
   // create some messages
-  var messages = _.times(1000, function (n) { return 'Hello World ' + Guid.raw(); })
+  var messages = [];
 
-  var control_exit = 0;
+  for (var i = 0; i < 1000; i++)
+    messages.push('Hello World ' + Guid.raw());
+
+  var control_exit = messages.length;
 
   // subscribing
   sub.start(channel, function (err, obj) {
     if (err) return t.ok(err, err);
     //t.ok(_.isObject(obj), JSONhandler.stringify(obj));
     t.pass(obj);
-    if (++control_exit === 1000) {
+    if (--control_exit === 0) {
       sub.end();
       setTimeout(function () { pub.end(); }, 500);
     }
@@ -43,7 +45,7 @@ test('pub-sub', function (t) {
 
   // publishing
   setTimeout(function () {
-    _.each(messages, function  (msg) {
+    messages.forEach(function (msg) {
       pub.publish(channel, msg, function () {
         t.ok(msg, msg);
       });
