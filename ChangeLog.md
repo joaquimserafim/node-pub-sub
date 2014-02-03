@@ -12,3 +12,8 @@
 2014.01.29, Version 1.1.1
 
 * Add "host" parameter to Publish enabling to define the ip that Publish will listen
+
+2014.02.02, Version 1.2.1
+
+* Remove 'encoding' option from Publish and Subscriber
+* Update dependencies

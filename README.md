@@ -37,7 +37,6 @@ All communication/messages it's done in JSON.
           timeout: put a timeout like 1 hour or 6 hours because if spend much 
               time without publish messages the server will close the 
               connection, default to 3600000
-          encoding: default to ascii, utf8
           
       
     events:
@@ -64,7 +63,6 @@ All communication/messages it's done in JSON.
           timeout: put a timeout like 1 hour or 6 hours because if spend much
               time without publish messages the server will close the connection,
               default to 3600000
-          encoding: default to ascii, utf8
           
     
     // subscribe to a channel      
@@ -80,7 +78,7 @@ All communication/messages it's done in JSON.
     
     var Publish = require('node-pub-sub').Publish;
     
-    var pub = new Publish(5000, {timeout: 120000, encoding: 'ascii'});
+    var pub = new Publish(5000, {timeout: 120000});
     
     pub.on('ready', function () { console.log('publish ready'); });
     pub.on('error', function (err) { console.log(err); });
@@ -100,9 +98,7 @@ All communication/messages it's done in JSON.
     
     var Subscribe = require('node-pub-sub').Subscribe;
     
-    var sub = new Subscribe(5000, {
-        timeout: 120000, encoding: 'ascii'
-    });
+    var sub = new Subscribe(5000, {timeout: 120000});
     
     sub.start(channel, function (err, message) {
         // {message: "client unsubscribe.", type: "warn"}

@@ -1,6 +1,6 @@
 {
   "name": "node-pub-sub",
-  "version": "1.0.2",
+  "version": "1.2.1",
   "description": "Implements Publish/Subscribe messaging paradigm in a very simple way.",
   "main": "index.js",
   "directories": {
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/joaquimserafim/node-pub-sub",
   "devDependencies": {
     "guid": "0.0.12",
-    "tape": "~2.4.0"
+    "tape": "~2.4.2"
   },
   "dependencies": {
     "underscore": "~1.5.2",
