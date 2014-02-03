@@ -22,3 +22,8 @@
 2014.02.02, Version 1.2.2
 
 * Use readable-stream
+
+
+2014.02.03, Version 1.2.2
+
+* Pub/Sub - Fix in module node-netcat when send a 'null' value.
