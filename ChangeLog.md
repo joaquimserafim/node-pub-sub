@@ -17,3 +17,8 @@
 
 * Remove 'encoding' option from Publish and Subscriber
 * Update dependencies
+
+
+2014.02.02, Version 1.2.2
+
+* Use readable-stream
