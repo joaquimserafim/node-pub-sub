@@ -10,6 +10,8 @@
 Implements Publish/Subscribe messaging paradigm in a very simple way.
 
 
+**V1.3**
+
   
 ### Some Wiki
 
@@ -93,6 +95,13 @@ All communication/messages it's done in JSON.
     pub.end();
     
     
+    Message format:
+    {"n":990,"tmx":1392154487968,"msg":"Hello World"}
+    
+    create by Publish
+    n   => message counter 
+    tmx => message timestamp
+    
     
     **Subscribe**
     
@@ -101,8 +110,6 @@ All communication/messages it's done in JSON.
     var sub = new Subscribe(5000, {timeout: 120000});
     
     sub.start(channel, function (err, message) {
-        // {message: "client unsubscribe.", type: "warn"}
-        // {message: "some exception", type: "error"}
         if (err) throw err;
         
         // JSON object 

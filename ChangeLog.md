@@ -24,6 +24,13 @@
 * Use readable-stream
 
 
-2014.02.03, Version 1.2.2
+2014.02.03, Version 1.2.3
 
 * Pub/Sub - Fix in module node-netcat when send a 'null' value.
+
+
+2014.02.11, Version 1.3.3
+
+* Add module 'tiny-eventemitter' for EventEmitter
+* Update dependencies
+* Remove event 'close' in Subscribe

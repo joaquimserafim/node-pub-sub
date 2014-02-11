@@ -1,14 +1,21 @@
 var test = require('tape');
 var Guid = require('guid');
 
-var JSONhandler = require('../lib/utils').JSONhandler;
+
+function JSONValid (data) {
+  try {
+    return JSON.parse(data);
+  } catch (err) {
+    return null;
+  }
+}
 
 var PubSub = require('../');
 
 var Publish = PubSub.Publish;
 var Subscribe = PubSub.Subscribe;
 
-var num_t = 2003;
+var num_t = 2002;
 
 test('pub-sub', function (t) {
   t.plan(num_t);
